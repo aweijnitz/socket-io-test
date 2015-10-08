@@ -10,4 +10,4 @@ Test application to verify working conf nginx + express.js + socket.io
 ```node index.js```
 
 ### Client
-Point browser to [](http://localhost:3000)
+Point browser to [localhost:3000](http://localhost:3000)
