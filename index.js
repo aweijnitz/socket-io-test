@@ -9,16 +9,25 @@ app.get('/', function (req, res) {
 io.on('connection', function (socket) {
 
     var id = setInterval(function () {
-        socket.emit('time', 'Time is ' + new Date());
-    }, 5000);
-    console.log('a user connected');
+        socket.emit('time', 'The server time is ' + new Date());
+    }, 30*1000);
+
+    //console.log(socket.client.request.headers);
+
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
+
+    socket.on('lag', function (msg) {
+        socket.emit('lag-echo',msg)
+    });
+
     socket.on('chat message', function (msg) {
         io.emit('msg', msg); // Broadcast to all clients
-        console.log('message: ' + msg);
+        //console.log('message: ' + msg);
     });
+
+    socket.emit('welcome', socket.client.request.headers['user-agent']);
 });
 
 http.listen(3000, function () {
