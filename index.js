@@ -30,6 +30,6 @@ io.on('connection', function (socket) {
     socket.emit('welcome', socket.client.request.headers['user-agent']);
 });
 
-http.listen(3000, function () {
-    console.log('listening on *:3000');
+http.listen(3030, function () {
+    console.log('listening on *:3030');
 });
